@@ -3,7 +3,7 @@ import 'dart:convert';
 
 class ApiUserAuthenticate{
   Future authenticateUser(String username, String password) async{
-    var request = http.MultipartRequest('POST', Uri.parse('http://10.0.2.2:8000/api-token-auth/'));
+    var request = http.MultipartRequest('POST', Uri.parse('https://inctool.net/api-token-auth/'));
 
     request.fields.addAll({
       'username': username,
