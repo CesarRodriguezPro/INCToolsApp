@@ -1,12 +1,9 @@
 import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:camera/camera.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:google_ml_vision/google_ml_vision.dart';
+import 'package:image_picker/image_picker.dart';
 
-
-List<CameraDescription> cameras = [];
 
 class DashBoard extends StatefulWidget {
   static String id = 'DashBoard';
@@ -17,7 +14,29 @@ class DashBoard extends StatefulWidget {
 }
 
 class _DashBoardState extends State<DashBoard> {
+
+  void takePictures() async{
+    final _picker = ImagePicker();
+    final pickedFile = await _picker.getImage(source: ImageSource.camera);
+    final bytes = await pickedFile!.readAsBytes();
+    log(bytes.toString());
+  }
+
+  Future<String> barcodeDetector()async{
+    takePictures();
+    // final GoogleVisionImage visionImage = GoogleVisionImage.fromFile(imageFile);
+    // final BarcodeDetector barcodeDetector = GoogleVision.instance.barcodeDetector();
+    // final List<Barcode> barcodes = await barcodeDetector.detectInImage(visionImage);
+    // var rawValue;
+    // for (Barcode barcode in barcodes) {
+    //   rawValue = barcode.rawValue;
+    // }
+    // return rawValue;
+    return 'hello';
+  }
+
   String barcode = '';
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -33,7 +52,8 @@ class _DashBoardState extends State<DashBoard> {
                       fontWeight: FontWeight.bold),
               ),
               onPressed: (){
-                // working in this part
+                log('hello world');
+                barcodeDetector();
               },
               child: Text('Receive Item'),
             ),

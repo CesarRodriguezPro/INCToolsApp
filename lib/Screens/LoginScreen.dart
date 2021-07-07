@@ -20,13 +20,19 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
+
+    bool _visibleError = false;
     const TextStyle Welcome = TextStyle(fontSize: 30);
     final _usernameController = TextEditingController();
     final _passwordController = TextEditingController();
+
     return  MaterialApp(
         title: 'International Concrete Tools',
         home: Scaffold(
-          appBar: AppBar(title:Text('International Concrete')),
+          appBar: AppBar(
+            title:Text('International Concrete'),
+            centerTitle: true,
+          ),
           body: Container(
             child: Center(
               child: Column(
@@ -34,6 +40,21 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   Text('Welcome',style: Welcome, ),
                   Text('Please Sign In', style: Welcome,),
+                  Visibility(
+                    visible: _visibleError,
+                    child: Card(
+                      color:Colors.red,
+                      elevation: 10.0,
+                      child: SizedBox(
+                        height: 30.0,
+                        child: Row(
+                          children: [
+                            Expanded(child: Text('Wrong Password or Username'))
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
                   loginUsername(_usernameController),
                   loginPassword(_passwordController),
                   ElevatedButton(onPressed: ()async {
@@ -44,9 +65,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       String _token = token[1]['token'];
                       apiBox.put('api_key', _token);
                       Navigator.pushNamed(context, DashBoard.id);
-
                     }else{
-                      log("there is a problem with you password");
+                      setState(() {
+                        _visibleError = true;
+                      });
+
                     }
                   },
                       child: Text('Summit')),
@@ -60,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Padding loginUsername(_usernameController) {
     return Padding(
-      padding:EdgeInsets.all(16.0),
+      padding:EdgeInsets.all(10.0),
       child:TextFormField(
         decoration: InputDecoration(labelText: 'Username',),
         controller: _usernameController,
@@ -69,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Padding loginPassword(_passwordController) {
-    return Padding(padding: EdgeInsets.all(16.0),
+    return Padding(padding: EdgeInsets.all(10.0),
       child: TextFormField(
         obscureText: true,
         controller: _passwordController,
