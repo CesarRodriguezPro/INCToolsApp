@@ -17,7 +17,6 @@ class _DashBoardState extends State<DashBoard> {
 
   late final _image;
 
-
   _getBarcodeCode()async{
     final GoogleVisionImage visionImage = GoogleVisionImage.fromFile(_image);
     final BarcodeDetector barcodeDetector = GoogleVision.instance.barcodeDetector();
@@ -48,6 +47,7 @@ class _DashBoardState extends State<DashBoard> {
     });
 
     _getBarcodeCode();
+
   }
 
 
