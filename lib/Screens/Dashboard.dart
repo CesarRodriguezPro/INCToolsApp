@@ -2,8 +2,7 @@ import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_ml_vision/google_ml_vision.dart';
-import 'package:image_picker/image_picker.dart';
-
+import 'package:hive/hive.dart';
 
 class DashBoard extends StatefulWidget {
   static String id = 'DashBoard';
@@ -14,16 +13,11 @@ class DashBoard extends StatefulWidget {
 }
 
 class _DashBoardState extends State<DashBoard> {
-
-  void takePictures() async{
-    final _picker = ImagePicker();
-    final pickedFile = await _picker.getImage(source: ImageSource.camera);
-    final bytes = await pickedFile!.readAsBytes();
-    log(bytes.toString());
-  }
+  BarcodeDetector detector = GoogleVision.instance.barcodeDetector();
+  List<String> data = [];
 
   Future<String> barcodeDetector()async{
-    takePictures();
+
     // final GoogleVisionImage visionImage = GoogleVisionImage.fromFile(imageFile);
     // final BarcodeDetector barcodeDetector = GoogleVision.instance.barcodeDetector();
     // final List<Barcode> barcodes = await barcodeDetector.detectInImage(visionImage);
@@ -32,6 +26,7 @@ class _DashBoardState extends State<DashBoard> {
     //   rawValue = barcode.rawValue;
     // }
     // return rawValue;
+
     return 'hello';
   }
 
@@ -43,20 +38,7 @@ class _DashBoardState extends State<DashBoard> {
       home: Scaffold(
         body: SafeArea(
           child: Center(
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  primary: Colors.blue,
-                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-                  textStyle: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold),
-              ),
-              onPressed: (){
-                log('hello world');
-                barcodeDetector();
-              },
-              child: Text('Receive Item'),
-            ),
+            child:Text('hello world'),
           ),
         ),
       ),
