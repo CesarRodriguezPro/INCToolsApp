@@ -1,3 +1,4 @@
+import 'package:inc_tools/Screens/CameraScreen.dart';
 import 'Screens/LoginScreen.dart';
 import 'Screens/Dashboard.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
       routes: {
         LoginScreen.id: (context)=>LoginScreen(),
         DashBoard.id: (context)=>DashBoard(),
+        CameraWidget.id: (context)=>CameraWidget(),
       },
     );
   }

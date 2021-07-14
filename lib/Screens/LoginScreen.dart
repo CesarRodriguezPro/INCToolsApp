@@ -6,7 +6,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'Dashboard.dart';
 
 
-
 class LoginScreen extends StatefulWidget {
   static String id = 'login_screen';
   const LoginScreen();
@@ -69,7 +68,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       setState(() {
                         _visibleError = true;
                       });
-
                     }
                   },
                       child: Text('Summit')),
