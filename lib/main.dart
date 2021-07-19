@@ -9,6 +9,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 void main()async {
   await Hive.initFlutter();
   await Hive.openBox('API');
+  await Hive.openBox('UserData');
   runApp(MyApp());
 }
 

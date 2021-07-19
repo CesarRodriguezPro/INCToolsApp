@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'CameraScreen.dart';
-import 'dart:developer';
+import 'NewTool.dart';
+
+
 
 
 class DashBoard extends StatefulWidget {
@@ -15,19 +17,16 @@ class DashBoard extends StatefulWidget {
 }
 
 class _DashBoardState extends State<DashBoard> {
-
+  String _title = 'Welcome';
 
   @override
   Widget build(BuildContext context) {
 
-    String? _data = 'welcome';
-
-
-
     return MaterialApp(
       home:Scaffold(
         appBar: AppBar(
-          title: Text(_data),
+          centerTitle: true,
+          title: Text(_title),
         ),
         body: SafeArea(
           child: Center(
@@ -35,14 +34,16 @@ class _DashBoardState extends State<DashBoard> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text(_data),
                 ElevatedButton(
                   child: Text("Scan Barcode"),
                   onPressed: ()async{
                     final data = await Navigator.push(context, MaterialPageRoute(builder: (context)=> CameraWidget()));
-                    setState(() {
-                      _data= data;
-                    });
+                  },
+                ),
+                ElevatedButton(
+                  child: Text("New Tool"),
+                  onPressed: ()async{
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>NewToolPage()));
                   },
                 ),
               ],
