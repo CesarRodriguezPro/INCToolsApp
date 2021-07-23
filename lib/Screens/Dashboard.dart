@@ -6,9 +6,9 @@ import 'NewTool.dart';
 
 
 
+
 class DashBoard extends StatefulWidget {
   static String id = 'DashBoard';
-
   const DashBoard({Key? key}) : super(key: key);
 
 
@@ -17,7 +17,6 @@ class DashBoard extends StatefulWidget {
 }
 
 class _DashBoardState extends State<DashBoard> {
-  String _title = 'Welcome';
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +25,7 @@ class _DashBoardState extends State<DashBoard> {
       home:Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text(_title),
+          title: Text('Welcome'),
         ),
         body: SafeArea(
           child: Center(

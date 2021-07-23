@@ -16,12 +16,16 @@ Future responseHelper(http.StreamedResponse response)async{
   }
 }
 
-
 class ApiKeyAccess{
   String apiKey(){
     var box = Hive.box('API');
-    String apiKey = box.get('api_key');
+    String apiKey = box.get('token');
     return apiKey;
   }
 }
 
+Map<String, String> getHeader(){
+  // simple way to get api key store in database
+  var apiKeySaved = ApiKeyAccess().apiKey();
+  return {'Authorization': 'TOKEN $apiKeySaved'};
+}
