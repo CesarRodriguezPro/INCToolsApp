@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'CameraScreen.dart';
-import 'NewTool.dart';
+import '../LoadingScreens/ToolsLoadingScreen.dart';
 
 
 
@@ -42,7 +42,7 @@ class _DashBoardState extends State<DashBoard> {
                 ElevatedButton(
                   child: Text("New Tool"),
                   onPressed: ()async{
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>NewToolPage()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>ToolsLoadingScreen()));
                   },
                 ),
               ],

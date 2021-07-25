@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return MaterialApp(
-      initialRoute: ToolsLoadingScreen.id,
+      initialRoute: LoginScreen.id,
       routes: {
         LoginScreen.id: (context)=>LoginScreen(),
         DashBoard.id: (context)=>DashBoard(),

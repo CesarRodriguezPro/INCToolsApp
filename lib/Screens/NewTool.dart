@@ -19,7 +19,7 @@ class _NewToolPageState extends State<NewToolPage> {
   var _toolTags = TextEditingController();
   var _toolQuantity = TextEditingController();
   bool isChecked = true;
-  String _chosenValue = "";
+  String _chosenValue = "Choose...";
 
   @override
   Widget build(BuildContext context) {
@@ -40,22 +40,16 @@ class _NewToolPageState extends State<NewToolPage> {
                   Text('Or'),
                   ElevatedButton(onPressed: (){}, child: Text('Scan Barcode')),
                 ],),
-              Row(
-                children: [
-
-                  DropdownButton<String>(
-                    focusColor:Colors.white,
-                    value: _chosenValue,
-                    style: TextStyle(color: Colors.white),
-                    iconEnabledColor:Colors.black,
-                    items: optionsTypes() ,  // here is where the items will be return to.
-                    onChanged: (String? value) {
-                      setState(() {
-                        _chosenValue = value!;
-                      });
-                    },
-                  ),
-                ],
+              DropdownButton<String>(
+                focusColor:Colors.white,
+                value: _chosenValue,
+                iconEnabledColor:Colors.black,
+                items: optionsTypes() ,  // here is where the items will be return to.
+                onChanged: (String? value) {
+                  setState(() {
+                    _chosenValue = value!;
+                  });
+                },
               ),
               simpleInput(_toolType, "Tool Type"),
               simpleInput(_toolTags, "Tags"),
@@ -93,23 +87,20 @@ class _NewToolPageState extends State<NewToolPage> {
 
   List<DropdownMenuItem<String>> optionsTypes (){
 
+    List<String> types = ["Choose..."];
+    types.addAll(widget.typesTools);
+
     List<DropdownMenuItem<String>> items = [];
-    List<String> types = widget.typesTools;
-
-
-    // loops the values.
     for(String _value in types){
-
-      // this check what values is giving to the function
-      print("--------->>  $_value");
-
-      // add to the list so can be return.
       items.add(
-          DropdownMenuItem<String>(value: _value, child: Text(_value)));
+          DropdownMenuItem<String>(
+              value: _value,
+              child: Text(_value, style: TextStyle(color: Colors.black),)
+          ),
+      );
     }
 
-      // return list of items the widget
-      return items;
+    return items;
   }
 
 
